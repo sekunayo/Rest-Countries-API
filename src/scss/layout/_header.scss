@@ -1,0 +1,33 @@
+.header {
+    background-color: hsl(209, 23%, 22%);
+    height: 100px;
+    display: grid;
+    grid-template-columns: 100px auto 100px;
+    align-items: center;
+
+    &-box {
+        grid-column: 2/3;
+        color: $dark-mode-text;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &-heading{
+        font-size: 1.6rem;
+        font-weight: 800;
+    }
+    &-theme-switch {
+        display : grid;
+        grid-template-columns: repeat(2,auto);
+        grid-column-gap: 10px;
+        align-items: center;
+        & i{
+            cursor: pointer;
+        }
+        & p{
+        font-size: 1.05rem;
+        font-weight: 600;
+    }
+}
+}

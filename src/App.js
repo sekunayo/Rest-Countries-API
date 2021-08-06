@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState,useEffect} from 'react';
+import ErrorMessage from './Components/ErrorMessage/ErrorMessage';
+import Header from './Components/Header/Header';
+import Details from './pages/Details';
+import Main from './pages/Main';
+import { Switch, Route } from "react-router-dom";
+import Loading from './pages/Loading';
 
 function App() {
+  let [loading, setLoading] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    {loading ? <Loading/> : 'aaa'}
+        <div className="app">
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Main} />
+          {/* <Route path="/:name" exact component={Details} /> */}
+        </Switch>
+      </div>
+    
+  
+ 
   );
 }
 

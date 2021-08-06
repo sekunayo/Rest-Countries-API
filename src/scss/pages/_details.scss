@@ -1,0 +1,124 @@
+.details {
+    display: grid;
+    grid-template-columns: 100px auto 100px;
+    align-items: center;
+    height: 70vh;
+
+    &-box-image {
+        height: 100%;
+        width: 100%;
+
+        & img {
+            max-width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &-button-container {
+        display: flex;
+        align-items: center;
+    }
+
+    &-container {
+        grid-column: 2/3;
+        display: grid;
+        grid-template-rows: repeat(2, auto);
+        grid-row-gap: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &-box {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 80px;
+
+        &-description {
+            display: grid;
+            grid-template-rows: repeat(auto-fit, auto);
+            grid-row-gap: 50px;
+
+            &-footer {
+                &-container {
+                    display: grid;
+                    grid-template-columns: repeat(2,auto);
+                    grid-column-gap: 10px;
+                    color: $dark-mode-text;
+                    align-items: center;
+                }
+            }
+
+            &-container {
+                & h3 {
+                    font-size: 1.6rem;
+                    color: $dark-mode-text;
+                    letter-spacing: 0.1px;
+                }
+
+                display: grid;
+                grid-template-rows: repeat(2, auto);
+                grid-row-gap: 30px;
+            }
+
+            &-text {
+                & p {
+                    color: $dark-mode-text;
+
+                    & span {
+                        color: hsla(0, 0%, 100%, 0.5);
+                    }
+                }
+
+                display: grid;
+                grid-template-columns: repeat(2, auto);
+                grid-column-gap: 40px;
+
+                &-1 {
+                    display: grid;
+                    grid-template-rows: repeat(5, auto);
+                    grid-row-gap: 10px;
+                }
+
+                &-2 {
+                    display: grid;
+                    grid-template-rows: repeat(3, 20px);
+                    grid-row-gap: 10px;
+
+                }
+            }
+        }
+    }
+}
+
+.border-country {
+    width: auto;
+    padding: 7px 14px;
+    background-color: $dark-mode-element;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-container {
+        display: grid;
+        grid-template-columns: repeat(3, 90px);
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+}
+
+.go-back-button {
+    padding: 8px 25px;
+    color: $dark-mode-text;
+    background-color: $dark-mode-element;
+    outline: 0;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    width: auto;
+    cursor: pointer;
+
+    & i {
+        margin-right: 10px;
+    }
+}
