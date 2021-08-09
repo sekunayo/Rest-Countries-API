@@ -1,21 +1,38 @@
-.loading{
-   display : flex;
-   justify-content: center;
-   align-items: center;
-   height: 100vh;
-   &-circle {
-  border: 3px solid hsla(0, 0%, 100%,0.5);
-  border-top-color: $dark-mode-text;
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  animation: spin 1s linear infinite;
+.text-animation-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.text-animation{
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: hsla(0, 0%, 100%,0.5);
+  font-size: 2rem;
+  letter-spacing: 1px;
+  position: relative;
+  --webkit-text-stroke: 1px rgba(255,255,255,0.5);
+}
+.text-animation::before{
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  color: $dark-mode-text;
+  overflow: hidden;
+  position: absolute;
+  content: attr(data-text);
+  border-right: 1px solid $dark-mode-text;
+  --webkit-text-stroke: 0px $dark-mode-text;
+  animation: animate 6s linear;
 }
 
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
+@keyframes animate {
+  0%,100%{
+    width: 0;
+  }
+  70%,90%{
+    width: 101%;
   }
 }

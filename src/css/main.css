@@ -14,6 +14,10 @@ h1, h2, h3, h4, h5, h6, p {
   padding: 0;
 }
 
+.links {
+  text-decoration: none;
+}
+
 body {
   font-family: "Nunito Sans", sans-serif;
   background-color: #202c37;
@@ -169,6 +173,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  cursor: pointer;
 }
 
 .nav-select-box-list {
@@ -239,8 +244,8 @@ body {
       grid-template-columns: repeat(auto-fill, 300px);
   -ms-grid-rows: (auto)[auto-fill];
       grid-template-rows: repeat(auto-fill, auto);
-  grid-row-gap: 40px;
-  grid-column-gap: 40px;
+  grid-row-gap: 55px;
+  grid-column-gap: 55px;
   min-width: 100%;
 }
 
@@ -288,6 +293,53 @@ body {
       -ms-flex-align: center;
           align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  cursor: pointer;
+}
+
+.error-message {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 430px;
+  padding: 10px 20px;
+  height: 100px;
+  background-color: #990000;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.error-message p {
+  color: white;
+}
+
+.error-message-close-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 100%;
+  height: 20px;
+  margin-bottom: 10px;
+}
+
+.error-message-close-icon i {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
 }
 
 .details {
@@ -298,7 +350,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 70vh;
+  height: 80vh;
 }
 
 .details-box-image {
@@ -456,7 +508,53 @@ body {
   margin-right: 10px;
 }
 
-.loading {
+.go-back-button:hover {
+  cursor: pointer;
+  -webkit-animation: jelly 0.5s;
+          animation: jelly 0.5s;
+}
+
+@-webkit-keyframes jelly {
+  0%,
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  25% {
+    -webkit-transform: scale(0.9, 1.1);
+            transform: scale(0.9, 1.1);
+  }
+  50% {
+    -webkit-transform: scale(1.1, 0.9);
+            transform: scale(1.1, 0.9);
+  }
+  75% {
+    -webkit-transform: scale(0.95, 1.05);
+            transform: scale(0.95, 1.05);
+  }
+}
+
+@keyframes jelly {
+  0%,
+  100% {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+  }
+  25% {
+    -webkit-transform: scale(0.9, 1.1);
+            transform: scale(0.9, 1.1);
+  }
+  50% {
+    -webkit-transform: scale(1.1, 0.9);
+            transform: scale(1.1, 0.9);
+  }
+  75% {
+    -webkit-transform: scale(0.95, 1.05);
+            transform: scale(0.95, 1.05);
+  }
+}
+
+.text-animation-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -469,14 +567,71 @@ body {
   height: 100vh;
 }
 
-.loading-circle {
+.text-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 2rem;
+  letter-spacing: 1px;
+  position: relative;
+  --webkit-text-stroke: 1px rgba(255,255,255,0.5);
+}
+
+.text-animation::before {
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  color: white;
+  overflow: hidden;
+  position: absolute;
+  content: attr(data-text);
+  border-right: 1px solid white;
+  --webkit-text-stroke: 0px $dark-mode-text;
+  -webkit-animation: animate 6s linear;
+          animation: animate 6s linear;
+}
+
+@-webkit-keyframes animate {
+  0%, 100% {
+    width: 0;
+  }
+  70%, 90% {
+    width: 101%;
+  }
+}
+
+@keyframes animate {
+  0%, 100% {
+    width: 0;
+  }
+  70%, 90% {
+    width: 101%;
+  }
+}
+
+.loader {
   border: 3px solid rgba(255, 255, 255, 0.5);
   border-top-color: white;
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  width: 3em;
+  height: 3em;
   -webkit-animation: spin 1s linear infinite;
           animation: spin 1s linear infinite;
+}
+
+.loader-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50vh;
 }
 
 @-webkit-keyframes spin {
@@ -491,4 +646,9 @@ body {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
+}
+
+.error-page {
+  height: 100vh;
+  background-color: #202c37;
 }

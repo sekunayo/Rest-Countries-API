@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import React from 'react';
 
 
@@ -6,14 +6,22 @@ export const CountryContext = createContext();
 
 
 function CountryContextProvider(props) {
-    const [valuer, setValue] = useState({});
+    const [valuer, setValuer] = useState({});
     let [countryType, setCountryType] = useState('all');
-    let [currentElement, setCurrentElement] = useState('');
+    let [currentElement, setCurrentElement] = useState({});
+
+    useEffect(() => {
+        let data = localStorage.getItem("currentElement");
+        if (data) {
+            data = JSON.parse(localStorage.getItem("currentElement"));
+        }
+        setCurrentElement(data);
+    }, [])
 
     const onChangeHandler = (e) => {
-        setValue(e.target.value.toLowerCase());
+        setValuer(e.target.value.toLowerCase());
     }
-    const onSubmitHandler = (e) => {
+    const onSubmitHandler = (element) => (e) => { 
         e.preventDefault();
         if (valuer) {
             setCountryType(`name/${valuer}`);
@@ -21,15 +29,12 @@ function CountryContextProvider(props) {
         else {
             setCountryType([]);
         }
-        // else {
-        //     // <ErrorMessage/>
-        //     console.log('invalid name')
-        // }
-        setValue('');
+        element.current.value = '';
     }
     const getCurrentElement = (element) => {
+        localStorage.setItem('currentElement', JSON.stringify(element));
         setCurrentElement(element);
-        console.log(element);
+
     }
     return (
         <CountryContext.Provider value={{ onChangeHandler, valuer , onSubmitHandler,countryType,setCountryType,getCurrentElement,currentElement}}>

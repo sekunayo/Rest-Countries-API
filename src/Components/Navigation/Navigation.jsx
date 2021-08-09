@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef } from 'react';
 import { CountryContext } from '../../context/CountryContextProvider';
 import RegionListItem from '../RegionListItem/RegionListItem';
 
@@ -9,13 +9,12 @@ function Navigation() {
     }
     let countries = ['all','africa', 'america', 'asia', 'europe', 'oceania'];
     const { onChangeHandler, onSubmitHandler } = useContext(CountryContext);
-   
-
+    const searchInput = useRef(null);
     return (
         <nav className="nav">
             <div className="nav-box">
-                <form className="nav-search-form" onSubmit={onSubmitHandler}>
-                    <input type="search" placeholder="Search for a country" onChange={onChangeHandler}>
+                <form className="nav-search-form" onSubmit={onSubmitHandler(searchInput)}>
+                    <input type="text" ref={searchInput} placeholder="Search for a country" onChange={onChangeHandler}>
                     </input>
                     <i className="fas fa-search" onClick={onSubmitHandler}></i>
                 </form>
@@ -34,13 +33,6 @@ function Navigation() {
                                         )
                                     })
                                 }
-
-                                {/* }
-                                <li>Africa</li>
-                                <li>America</li>
-                                <li>Asia</li>
-                                <li>Europe</li>
-                                <li>Oceania</li> */}
                             </ul>
                         </div>}
                     </div>

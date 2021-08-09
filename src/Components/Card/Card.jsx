@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { CountryContext } from '../../context/CountryContextProvider'
+import {Image, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 function Card({ population, region, capital, flag, name,element }) {
     const { getCurrentElement } = useContext(CountryContext);

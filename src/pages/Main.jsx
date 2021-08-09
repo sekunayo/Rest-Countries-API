@@ -3,47 +3,64 @@ import { CountryContext } from '../context/CountryContextProvider';
 import Card from '../Components/Card/Card';
 import Navigation from '../Components/Navigation/Navigation';
 import { Link } from "react-router-dom";
-
+import Loader from "../Components/Loader/Loader";
+import InvalidName from '../Components/InvalidName/InvalidName';
+// import ErrorMessage fro../Components/ErrorMessage/abage';
 function Main() {
     let [countryList, setCountryList] = useState([]);
-    const { valuer, countryType,getCurrentElement } = useContext(CountryContext);
-    let [statusCode, setStatusCode] = useState('');
+    const { valuer, countryType} = useContext(CountryContext);
+    let [loading, setLoading] = useState(true);
+    let [error, setError] = useState(false);
+    let [errorMessage, setErrorMessage] = useState('');
     async function fetchData(country) {
         try {
             let response = await fetch(`https://restcountries.eu/rest/v2/${country}`);
-            let result = await response.json();
-            setStatusCode(response.code);
-            setCountryList(result);
+            if (response.ok) {
+                let result = await response.json();
+                setLoading(false);
+                setCountryList(result);
+                setError(false);
+            }
+            else {
+                setError(true);
+                console.log("errrr")
+            }
         }
         catch (e) {
-            console.log(e.message)
-            // <ErrorMessage children={e.message} />
+            setError(true);
+            setErrorMessage(e.message);
         }
+    }
+    const closeModal = () => {
+        setError(false);
     }
 
     useEffect(() => {
         fetchData(countryType);
-        // if (statusCode == 404) {
-        //     <ErrorMessage children="Invalid name" />
-        // }
+
     }, [countryType, valuer])
 
+    
     return (
         <>
             <Navigation />
-
-            <div className="card-grid">
-                <div className="card-grid-container">
-                    {countryList.map((element, index) => {
-                        return (
-                            <Link to={`${element.name}`}>
-                                <Card key={index + 1} name={element.name} population={element.population} element={element} region={element.region} capital={element.capital} flag={element.flag} />
-                            </Link>
-                        )
-                    })
-                    }
+            {loading ? <Loader /> :
+                <div className="card-grid">
+                    <div className="card-grid-container">
+                        {countryList.map((element, index) => {
+                            return (
+                                <Link to={`${element.name}`} className="links">
+                                    <Card key={index + 1} name={element.name} population={element.population} element={element} region={element.region} capital={element.capital} flag={element.flag} />
+                                </Link>
+                            )
+                        })
+                        }
+                    </div>
                 </div>
-            </div>
+            }
+            {/* {error && <InvalidName closeModal={closeModal} children="This country does not exist. Kindly input a valid country name" />} */}
+
+
         </>
     )
 }
