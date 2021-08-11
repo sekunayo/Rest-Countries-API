@@ -1,13 +1,10 @@
 import React from 'react'
 
-function InvalidName({closeModal,children}) {
+function InvalidName() {
     return (
-        <div className="modal-error-message" onClick={closeModal}>
-            <div className="error-message">
-                <div className="error-message-close-icon">
-                    <i class="fas fa-times" onClick={closeModal}></i>
-                </div>
-                <p className="error-message-description">{children}</p>
+        <div className="invalid-name">
+            <div className="invalid-name-container">
+            <p className="invalid-name-message"> Name does not exit</p>
             </div>
         </div>
     )

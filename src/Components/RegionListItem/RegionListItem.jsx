@@ -5,10 +5,10 @@ function RegionListItem(props) {
     const { setCountryType } = useContext(CountryContext);
 
     const setRegion = () => {
-        if (props.children == 'america') {
+        if (props.children === 'america') {
             setCountryType('region/americas');
         }
-        else if (props.children == 'all') {
+        else if (props.children === 'all') {
             setCountryType('all');
         }
         else {

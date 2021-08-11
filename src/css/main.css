@@ -180,6 +180,7 @@ body {
   position: absolute;
   top: 50px;
   left: 0;
+  z-index: 4;
   background-color: #2b3945;
   color: white;
   width: 200px;
@@ -205,14 +206,22 @@ body {
 .card {
   width: 300px;
   height: 350px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 150px 200px;
+      grid-template-rows: 150px 200px;
   background-color: #2b3945;
+  -webkit-box-shadow: 1px 1px 5px rgba(255, 255, 255, 0.1);
+          box-shadow: 1px 1px 5px rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  -webkit-transition: all 0.6s ease-in-out;
+  transition: all 0.6s ease-in-out;
+}
+
+.card:hover {
+  -webkit-transform: scale(1.05);
+          transform: scale(1.05);
 }
 
 .card-image {
@@ -250,15 +259,17 @@ body {
 }
 
 .card-text {
+  height: 100%;
   padding: 25px 20px;
   color: white;
-  height: 180px;
   display: -ms-grid;
   display: grid;
   background-color: #2b3945;
   -ms-grid-rows: (auto)[2];
       grid-template-rows: repeat(2, auto);
   grid-row-gap: 15px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .card-text-title {
@@ -279,67 +290,24 @@ body {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.modal-error-message {
+.card-text:hover {
   width: 100%;
   height: 100%;
-  z-index: 5;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  z-index: 3;
   cursor: pointer;
-}
-
-.error-message {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 430px;
-  padding: 10px 20px;
-  height: 100px;
-  background-color: #990000;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-}
-
-.error-message p {
-  color: white;
-}
-
-.error-message-close-icon {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  width: 100%;
-  height: 20px;
-  margin-bottom: 10px;
-}
-
-.error-message-close-icon i {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 1rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .details {
@@ -650,5 +618,112 @@ body {
 
 .error-page {
   height: 100vh;
-  background-color: #202c37;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 65vh 35vh;
+      grid-template-rows: 65vh 35vh;
+}
+
+.error-page-inline {
+  font-size: 2rem;
+  color: white;
+}
+
+.error-page-goback {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  cursor: pointer;
+}
+
+.error-page-goback-arrow {
+  font-size: 1rem;
+  color: white;
+  margin-right: 10px;
+}
+
+.error-page-goback-message {
+  color: white;
+}
+
+.error-page-message {
+  font-size: 1.2rem;
+  font-weight: 100;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.5px;
+}
+
+.error-page-first {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.error-page-second {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 20px;
+}
+
+.error-page-footer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: (auto)[2];
+      grid-template-rows: repeat(2, auto);
+  grid-row-gap: 10px;
+}
+
+.error-page-box {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (auto)[3];
+      grid-template-columns: repeat(3, auto);
+  grid-column-gap: 20px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.error-page-box h1 {
+  font-size: 15rem;
+  color: white;
+}
+
+.error-page-circle {
+  width: 200px;
+  height: 200px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+}
+
+.error-page-circle img {
+  max-width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.invalid-name {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: 5;
 }
