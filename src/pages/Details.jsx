@@ -6,7 +6,7 @@ import Header from '../Components/Header/Header'
 function Details() {
     const history = useHistory();
     const { currentElement } = useContext(CountryContext);
-
+    { console.log(currentElement) };
 
     return (
         <>

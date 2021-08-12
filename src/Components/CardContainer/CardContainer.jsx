@@ -14,9 +14,7 @@ function CardContainer() {
                     <div className="card-grid-container">
                         {countryList.map((element, index) => {
                             return (
-                                <Link to={`${element.name}`} className="links">
-                                    <Card key={index + 1} name={element.name} population={element.population} element={element} region={element.region} capital={element.capital} flag={element.flag} />
-                                </Link>
+                                 <Card key={index + 1} name={element.name} population={element.population} element={element} region={element.region} capital={element.capital} flag={element.flag} />
                             )
                         })
                         }

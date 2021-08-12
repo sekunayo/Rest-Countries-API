@@ -15,8 +15,7 @@ function Main() {
         }, 5000);
 
     }, [])
-    console.log(error);
-
+    
     return (
         <>
             {loading ? <Loading /> :

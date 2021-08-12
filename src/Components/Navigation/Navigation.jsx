@@ -8,15 +8,15 @@ function Navigation() {
         setShowText(!showText);
     }
     let countries = ['all','africa', 'america', 'asia', 'europe', 'oceania'];
-    const { onChangeHandler, onSubmitHandler } = useContext(CountryContext);
+    const { onChangeHandler, onSubmitHandler,onKeyUpHandler } = useContext(CountryContext);
     const searchInput = useRef(null);
     return (
         <nav className="nav">
             <div className="nav-box">
                 <form className="nav-search-form" onSubmit={onSubmitHandler(searchInput)}>
-                    <input type="text" ref={searchInput} placeholder="Search for a country" onChange={onChangeHandler}>
+                    <input type="text" ref={searchInput} placeholder="Search for a country" onKeyUp={onKeyUpHandler} onChange={onChangeHandler}>
                     </input>
-                    <i className="fas fa-search" onClick={onSubmitHandler}></i>
+                    <i className="fas fa-search" onClick={onSubmitHandler(searchInput)}></i>
                 </form>
                 <div className="nav-select">
                     <div className="nav-select-box">
